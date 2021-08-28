@@ -3,6 +3,7 @@ import {VercelRequest, VercelResponse} from '@vercel/node'
 
 import {parseSMS} from '../utils/parse'
 import {SaveTransaction} from 'ynab'
+import {getPayeeInfo} from '../utils/mapper'
 
 interface Payload {
   text: string
@@ -44,18 +45,21 @@ async function handler(req: VercelRequest, res: VercelResponse) {
 
     const memo = `via x-${sms.cardNo}: ${sms.payee} (${sms.balance} remaining)`
 
+    const payeeInfo = getPayeeInfo(sms.payee)
+
     const result = await Ynab.transactions.createTransaction(budgetId, {
       transaction: {
+        memo,
         account_id: accountId,
         date: sms.createdAt.toISOString(),
 
         // Unit is in milliunits
         amount: sms.amount * 1000,
 
-        memo,
-        payee_name: sms.payee,
-        payee_id: null,
-        category_id: null,
+        payee_name: payeeInfo.payeeName,
+        payee_id: payeeInfo.payeeId,
+        category_id: payeeInfo.categoryId,
+
         flag_color: SaveTransaction.FlagColorEnum.Blue,
         approved: true,
         cleared: SaveTransaction.ClearedEnum.Cleared,
@@ -67,11 +71,14 @@ async function handler(req: VercelRequest, res: VercelResponse) {
 
     res.send({
       ok: true,
+
       sms,
+      payeeInfo,
+      rateLimit,
+
       budgetId,
       accountId,
       transactionId,
-      rateLimit,
     })
   } catch (err) {
     res.status(500).send({error: err.message})
