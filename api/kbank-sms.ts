@@ -43,7 +43,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
     const sms = parseSMS(text)
     if (!sms?.amount) return err('sms is not from KBank')
 
-    const memo = `via x-${sms.cardNo}: ${sms.payee} (${sms.balance} remaining)`
+    const memo = `${sms.payee} via x-${sms.cardNo} (${sms.balance} remaining)`
 
     const payeeInfo = getPayeeInfo(sms.payee)
 
