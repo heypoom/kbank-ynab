@@ -1,7 +1,7 @@
 interface PayeeInfo {
   payeeName?: string | null
   payeeId?: string | null
-  categoryId: string | null
+  categoryId?: string | null
 }
 
 export const category = {
