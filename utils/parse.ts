@@ -13,6 +13,8 @@ export interface Transaction {
 const regex =
   /^Paid THB(.*) by card no\. x\-(.*) @ (.*)\s(.*)\s(.*) Available Balance THB(.*)/
 
+const parseAmount = (text: string) => parseFloat(text.replace(/,/g, '')) || 0
+
 export function parseSMS(sms: string): Transaction | null {
   if (!sms) return null
 
@@ -27,7 +29,7 @@ export function parseSMS(sms: string): Transaction | null {
     payee: payee.trim(),
     cardNo: cardNo.trim(),
     createdAt,
-    amount: parseFloat(amount) || 0,
-    balance: parseFloat(balance) || 0,
+    amount: parseAmount(amount),
+    balance: parseAmount(balance),
   }
 }

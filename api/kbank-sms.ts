@@ -60,9 +60,9 @@ async function handler(req: VercelRequest, res: VercelResponse) {
         payee_id: payeeInfo.payeeId,
         category_id: payeeInfo.categoryId,
 
-        flag_color: SaveTransaction.FlagColorEnum.Blue,
         approved: true,
         cleared: SaveTransaction.ClearedEnum.Cleared,
+        flag_color: SaveTransaction.FlagColorEnum.Blue,
       },
     })
 
