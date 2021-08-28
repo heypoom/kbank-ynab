@@ -86,6 +86,10 @@ export const category = {
 
 export const transactionMapper: Record<string, PayeeInfo> = {
   'WWW.GRAB.COM': {payeeName: 'Grab Taxi', categoryId: category.Taxi},
+  'LINEPAY*LINEMANLINEMANC': {
+    payeeName: 'Line Man',
+    categoryId: '4d20a28f-7848-4423-983c-0c4824db4ef7',
+  },
 }
 
 export function getPayeeInfo(smsPayee: string): PayeeInfo {
