@@ -35,13 +35,13 @@ async function handler(req: VercelRequest, res: VercelResponse) {
     const budgetId = payload.budgetId ?? YNAB_BUDGET_ID
     const accountId = payload.accountId ?? YNAB_ACCOUNT_ID
 
-    if (!ynabToken) return err('missing token')
-    const Ynab = new ynab.API(ynabToken)
-
     if (authKey !== AUTH_KEY) return err('invalid auth key')
 
     const sms = parseSMS(text)
     if (!sms?.amount) return err('sms is not from KBank')
+
+    if (!ynabToken) return err('missing token')
+    const Ynab = new ynab.API(ynabToken)
 
     const memo = `${sms.payee} via x-${sms.cardNo} (${sms.balance} remaining)`
 
