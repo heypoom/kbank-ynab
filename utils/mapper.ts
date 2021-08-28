@@ -6,7 +6,7 @@ interface PayeeInfo {
 
 export const category = {
   'Groceries 🥑': 'b556d009-9839-46c1-bebb-23c8f86ba4ce',
-  'Food Delivery 🍕': '4d20a28f-7848-4423-983c-0c4824db4ef7',
+  foodDelivery: '4d20a28f-7848-4423-983c-0c4824db4ef7',
   'Snacks 🍰': '75b980f8-c69c-4183-825a-fd5761b70b19',
   'Eat Out 🍣': 'd5ebfaf5-8775-48b4-bf62-ba5a23959fac',
   'Eat at TDPK  🍱 ': '5df101da-8f96-47f1-9bad-bf36a0527685',
@@ -85,10 +85,14 @@ export const category = {
 }
 
 export const transactionMapper: Record<string, PayeeInfo> = {
-  'WWW.GRAB.COM': {payeeName: 'Grab Taxi', categoryId: category.Taxi},
+  'WWW.GRAB.COM': {
+    payeeName: 'Grab Taxi',
+    categoryId: category.Taxi,
+  },
+
   'LINEPAY*LINEMANLINEMANC': {
     payeeName: 'Line Man',
-    categoryId: '4d20a28f-7848-4423-983c-0c4824db4ef7',
+    categoryId: category.foodDelivery,
   },
 }
 
