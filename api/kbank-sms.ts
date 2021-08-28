@@ -7,6 +7,10 @@ import {SaveTransaction} from 'ynab'
 interface Payload {
   text: string
   authKey: string
+
+  ynabToken?: string
+  budgetId?: string
+  accountId?: string
 }
 
 const {
@@ -16,18 +20,23 @@ const {
   AUTH_KEY = 'sample',
 } = process.env
 
-const Ynab = new ynab.API(YNAB_TOKEN)
-
 async function handler(req: VercelRequest, res: VercelResponse) {
   const err = (error: string) => res.status(400).json({error})
 
   try {
     if (req.method !== 'POST') return res.json({ready: true, version: '1.0.0'})
-
     if (!req.body?.text) return err('invalid payload')
-    if (!YNAB_TOKEN) return err('missing token')
 
-    const {text, authKey} = req.body as Payload
+    const payload = req.body as Payload
+    const {text, authKey} = payload
+
+    const ynabToken = payload.ynabToken ?? YNAB_TOKEN
+    const budgetId = payload.budgetId ?? YNAB_BUDGET_ID
+    const accountId = payload.accountId ?? YNAB_ACCOUNT_ID
+
+    if (!ynabToken) return err('missing token')
+    const Ynab = new ynab.API(ynabToken)
+
     if (authKey !== AUTH_KEY) return err('invalid auth key')
 
     const sms = parseSMS(text)
@@ -35,11 +44,14 @@ async function handler(req: VercelRequest, res: VercelResponse) {
 
     const memo = `via x-${sms.cardNo}: ${sms.payee} (${sms.balance} remaining)`
 
-    Ynab.transactions.createTransaction(YNAB_BUDGET_ID, {
+    const result = await Ynab.transactions.createTransaction(budgetId, {
       transaction: {
-        account_id: YNAB_ACCOUNT_ID,
+        account_id: accountId,
         date: sms.createdAt.toISOString(),
-        amount: sms.amount,
+
+        // Unit is in milliunits
+        amount: sms.amount * 1000,
+
         memo,
         payee_name: sms.payee,
         payee_id: null,
@@ -50,7 +62,17 @@ async function handler(req: VercelRequest, res: VercelResponse) {
       },
     })
 
-    res.send({ok: true, result: sms})
+    const transactionId = result.data.transaction?.id
+    const rateLimit = result.rateLimit
+
+    res.send({
+      ok: true,
+      sms,
+      budgetId,
+      accountId,
+      transactionId,
+      rateLimit,
+    })
   } catch (err) {
     res.status(500).send({error: err.message})
   }

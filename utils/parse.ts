@@ -13,13 +13,6 @@ export interface Transaction {
 const regex =
   /^Paid THB(.*) by card no\. x\-(.*) @ (.*)\s(.*)\s(.*) Available Balance THB(.*)/
 
-//  '50.00',
-//   '1234',
-//   'WWW.GRAB.COM',
-//   '25/08/21',
-//   '13.36',
-//   ' 123456.78',
-
 export function parseSMS(sms: string): Transaction | null {
   if (!sms) return null
 
