@@ -1,6 +1,14 @@
 {
   "devDependencies": {
+    "@types/jest": "^27.0.1",
     "@vercel/node": "^1.12.1",
+    "jest": "^27.1.0",
+    "ts-jest": "^27.0.5",
     "typescript": "^4.4.2"
+  },
+  "dependencies": {
+    "date-fns": "^2.23.0",
+    "transaction-parser-th": "^0.1.1",
+    "ynab": "^1.25.0"
   }
 }
