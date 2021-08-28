@@ -21,7 +21,7 @@ export function parseSMS(sms: string): Transaction | null {
 
   const [_, amount, cardNo, payee, date, time, balance] = match
 
-  const createdAt = parseDate(`${date} ${time}`, 'dd/MM/yy kk.mm', new Date())
+  const createdAt = parseDate(`${date} ${time}`, 'dd/MM/yy kk:mm', new Date())
 
   return {
     payee,
