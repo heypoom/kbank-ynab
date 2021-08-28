@@ -1,8 +1,8 @@
 import * as ynab from 'ynab'
+import {SaveTransaction} from 'ynab'
 import {VercelRequest, VercelResponse} from '@vercel/node'
 
 import {parseSMS} from '../utils/parse'
-import {SaveTransaction} from 'ynab'
 import {getPayeeInfo} from '../utils/mapper'
 
 interface Payload {
