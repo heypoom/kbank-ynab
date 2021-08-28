@@ -24,8 +24,8 @@ export function parseSMS(sms: string): Transaction | null {
   const createdAt = parseDate(`${date} ${time}`, 'dd/MM/yy kk:mm', new Date())
 
   return {
-    payee,
-    cardNo,
+    payee: payee.trim(),
+    cardNo: cardNo.trim(),
     createdAt,
     amount: parseFloat(amount) || 0,
     balance: parseFloat(balance) || 0,
