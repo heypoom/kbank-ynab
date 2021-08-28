@@ -6,7 +6,7 @@ interface PayeeInfo {
 
 export const category = {
   'Groceries 🥑': 'b556d009-9839-46c1-bebb-23c8f86ba4ce',
-  foodDelivery: '4d20a28f-7848-4423-983c-0c4824db4ef7',
+  FoodDelivery: '4d20a28f-7848-4423-983c-0c4824db4ef7',
   'Snacks 🍰': '75b980f8-c69c-4183-825a-fd5761b70b19',
   'Eat Out 🍣': 'd5ebfaf5-8775-48b4-bf62-ba5a23959fac',
   'Eat at TDPK  🍱 ': '5df101da-8f96-47f1-9bad-bf36a0527685',
@@ -34,7 +34,7 @@ export const category = {
   'Cloud Services 🌥': '2dcb1b99-d233-4ea0-b321-2eb54c37696a',
   'Software Subscriptions 📆': '468d2a1e-4492-40f0-8339-a0898197c825',
   'Stuff I Forgot to Budget For': 'c31d2b1d-09f9-48b3-8eb7-9e53b64b45d5',
-  'Fun 🐳': 'e51805cb-0bda-4aab-a241-c309f4e35297',
+  Fun: 'e51805cb-0bda-4aab-a241-c309f4e35297',
   'Gift 🎁': '61deee10-903f-45d8-a4a8-f2ef819d1eec',
   'Aeron Chair 💎': '939fe3ce-181a-42e4-a4d4-48c32637941a',
   'BTS 🚆': 'e9d5a51d-389e-41eb-be3c-b06e59022413',
@@ -77,11 +77,6 @@ export const category = {
   'Dividend Stocks (~25%)': '52606c14-930f-4d43-9ad2-5174f45de0b4',
   'Thai Market (~15%)': 'faa60bc9-94cf-47d6-98ee-59538ea03414',
   'Cash Security (1 Year)': '4d631eb4-13f0-45ad-a567-49a7ae7af4a4',
-  Security: '45977aed-0195-4e2f-a024-7f1d98c5518b',
-  'Dining Out': '72c69e16-57ee-42ca-bf4a-84c28d0b9425',
-  Gaming: 'c82b4783-ecec-4ba5-b35c-762c64053507',
-  Music: '8f87acb4-0230-42c8-b2db-faeb82e54122',
-  'Fun Money': '70fcc008-4909-432d-94e0-c80b711593cd',
 }
 
 export const transactionMapper: Record<string, PayeeInfo> = {
@@ -92,7 +87,12 @@ export const transactionMapper: Record<string, PayeeInfo> = {
 
   'LINEPAY*LINEMANLINEMANC': {
     payeeName: 'Line Man',
-    categoryId: category.foodDelivery,
+    categoryId: category.FoodDelivery,
+  },
+
+  'ONLYFANS.COM': {
+    payeeName: 'Onlyfans',
+    categoryId: category.Fun,
   },
 }
 
