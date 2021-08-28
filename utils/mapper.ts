@@ -5,17 +5,17 @@ interface PayeeInfo {
 }
 
 export const category = {
-  'Groceries 🥑': 'b556d009-9839-46c1-bebb-23c8f86ba4ce',
+  Groceries: 'b556d009-9839-46c1-bebb-23c8f86ba4ce',
   FoodDelivery: '4d20a28f-7848-4423-983c-0c4824db4ef7',
-  'Snacks 🍰': '75b980f8-c69c-4183-825a-fd5761b70b19',
-  'Eat Out 🍣': 'd5ebfaf5-8775-48b4-bf62-ba5a23959fac',
-  'Eat at TDPK  🍱 ': '5df101da-8f96-47f1-9bad-bf36a0527685',
+  Snacks: '75b980f8-c69c-4183-825a-fd5761b70b19',
+  EatOut: 'd5ebfaf5-8775-48b4-bf62-ba5a23959fac',
+  EatAtTDPK: '5df101da-8f96-47f1-9bad-bf36a0527685',
   Laundry: '830db753-3da6-4afb-a020-e4403e4ba7b1',
   'Utilities 🌟': '2f56c92d-5609-47c6-a166-7676b6acea9e',
-  'Internet 📱': '6afaf1bd-325a-4a3c-b223-e05f430d4e88',
+  Internet: '6afaf1bd-325a-4a3c-b223-e05f430d4e88',
   'Medical Expense': '66be0496-66a6-4644-ac01-a786a9c9284f',
   'Misc 💎': 'c571474f-66a5-4fde-957a-e6b4ee1b70ad',
-  'For June 💝': 'ff275753-4529-472d-84c5-805e6419947a',
+  ForJune: 'ff275753-4529-472d-84c5-805e6419947a',
   'Water 💧': '033a358e-407b-401e-8120-8bba3146148d',
   'Wi-Fi 🌍': '27c469b8-aacb-493e-986d-ced400b9c720',
   'Electric ⚡️': '51ab2ebc-7758-451c-9daf-32bf4546bf2f',
@@ -29,10 +29,10 @@ export const category = {
   Gifts: '41b11369-e3a9-43c8-b76b-51ca21624914',
   Giving: 'af1a7b80-50a3-4025-945f-6ffe5307a8be',
   'Computer Replacement': 'a25bb11e-28d9-4376-a0a8-6121811ef750',
-  'Games 🎮': '966d951a-2e3c-4e3c-be14-ec9b46beaa67',
-  'Software License 👩🏻‍💻': 'b9e0f799-aa5f-493f-9f2c-5a139b418020',
+  Games: '966d951a-2e3c-4e3c-be14-ec9b46beaa67',
+  SoftwareLicense: 'b9e0f799-aa5f-493f-9f2c-5a139b418020',
   'Cloud Services 🌥': '2dcb1b99-d233-4ea0-b321-2eb54c37696a',
-  'Software Subscriptions 📆': '468d2a1e-4492-40f0-8339-a0898197c825',
+  SoftwareSubscriptions: '468d2a1e-4492-40f0-8339-a0898197c825',
   'Stuff I Forgot to Budget For': 'c31d2b1d-09f9-48b3-8eb7-9e53b64b45d5',
   Fun: 'e51805cb-0bda-4aab-a241-c309f4e35297',
   'Gift 🎁': '61deee10-903f-45d8-a4a8-f2ef819d1eec',
@@ -45,10 +45,11 @@ export const category = {
   Uncategorized: 'e4669402-a7d4-457f-949a-63b361c8856e',
   Vacation: '2554d237-d5f6-43b9-935b-5cb0be5331b8',
   Chill: '832d1c10-493f-4e91-b2ab-23d94aea04e1',
+  Hotel: '329134e7-aee2-4bc9-ba4b-00fc570d76b4',
   'For June 💖': 'c3de38f0-6939-40e6-88ba-d3541a1dab12',
   Education: '0d8cf8a4-fb70-4ffc-9425-025ffa0624e6',
   'Books 📚': '0a7606b6-8d67-471d-8673-1f797d8764d2',
-  'Ikea 🧂': '11062ad3-6ee2-4256-ac4c-c576cbb00796',
+  Ikea: '11062ad3-6ee2-4256-ac4c-c576cbb00796',
   'Purchases: Ikea': 'd1d32dca-b4fa-44f2-83ca-3554d14003fb',
   'Shopee 🛍': '0abf7666-26bc-48db-9d01-65c95f3f2148',
   'Furniture 🛌': 'f615bee5-b5ca-4f42-9ec4-8a9e32543ed8',
@@ -85,7 +86,17 @@ export const transactionMapper: Record<string, PayeeInfo> = {
     categoryId: category.Taxi,
   },
 
+  'GRABTAXI (THAILAND) CO': {
+    payeeName: 'Grab Taxi',
+    categoryId: category.Taxi,
+  },
+
   'LINEPAY*LINEMANLINEMANC': {
+    payeeName: 'Line Man',
+    categoryId: category.FoodDelivery,
+  },
+
+  'LINEPAY*LINEMANLINEMANF': {
     payeeName: 'Line Man',
     categoryId: category.FoodDelivery,
   },
@@ -93,6 +104,136 @@ export const transactionMapper: Record<string, PayeeInfo> = {
   'ONLYFANS.COM': {
     payeeName: 'Onlyfans',
     categoryId: category.Fun,
+  },
+
+  'OBSIDIAN.MD': {
+    payeeName: 'Obsidian',
+    categoryId: category.SoftwareLicense,
+  },
+
+  '1PASSWORD': {
+    payeeName: '1Password',
+    categoryId: category.SoftwareLicense,
+  },
+
+  'TOPS-101 THE THIRD PLACE': {
+    payeeName: 'Tops',
+    categoryId: category.Groceries,
+  },
+
+  'DONKI MALL THONGLOR': {
+    payeeName: 'Donki',
+    categoryId: category.Groceries,
+  },
+
+  'ADVANCE MPAY': {
+    payeeName: 'AIS',
+    categoryId: category.Internet,
+  },
+
+  'ADVANCE MPAY( Airtime Po': {
+    payeeName: 'AIS',
+    categoryId: category.Internet,
+  },
+
+  'Hotel at Booking.com': {
+    payeeName: 'Booking.com',
+    categoryId: category.Hotel,
+  },
+
+  Google: {
+    payeeName: 'Google',
+    categoryId: category.SoftwareSubscriptions,
+  },
+
+  'Google Asia Pacific Pt GS': {
+    payeeName: 'Google',
+    categoryId: category.SoftwareSubscriptions,
+  },
+
+  'GOOGLE* Cloudflare': {
+    payeeName: 'Cloudflare',
+    categoryId: category.SoftwareSubscriptions,
+  },
+
+  'GOOGLE* YouTubePremium': {
+    payeeName: 'YouTube Premium',
+    categoryId: category.SoftwareSubscriptions,
+  },
+
+  'WWW.BNN.IN.TH': {
+    payeeName: 'Banana IT',
+    categoryId: category.Fun,
+  },
+
+  'APPLE.COM/BILL': {
+    payeeName: 'Apple',
+    categoryId: category.SoftwareSubscriptions,
+  },
+
+  'AMAZON PRIME VIDEO TH': {
+    payeeName: 'Amazon Prime',
+    categoryId: category.SoftwareSubscriptions,
+  },
+
+  'PAYPAL* DISCORD': {
+    payeeName: 'Discord',
+    categoryId: category.SoftwareSubscriptions,
+  },
+
+  'PAYPAL *SPOTIFY': {
+    payeeName: 'Spotify',
+    categoryId: category.SoftwareSubscriptions,
+  },
+
+  'OMISE*Robinhood': {
+    payeeName: 'Robinhood',
+    categoryId: category.FoodDelivery,
+  },
+
+  '2C2P-IKANO BANGNA': {
+    payeeName: 'Ikea',
+    categoryId: category.Ikea,
+  },
+
+  'PAYPAL *SCRIBD.COM INVO': {
+    payeeName: 'Scribd',
+    categoryId: category.SoftwareSubscriptions,
+  },
+
+  'OMISE*VEGGIOLOGY': {
+    payeeName: 'Veggiology',
+    categoryId: category.Groceries,
+  },
+
+  'PAYPAL *FONTAWAESOME': {
+    payeeName: 'Font Awesome',
+    categoryId: category.SoftwareSubscriptions,
+  },
+
+  'TMN 7-11': {
+    payeeName: '7-11',
+    categoryId: category.Snacks,
+  },
+
+  'TMN FAST FOOD': {
+    payeeName: '7-11',
+    categoryId: category.EatAtTDPK,
+  },
+
+  'KINOKUNIYA BOOK STORES': {
+    payeeName: 'Kinokuniya',
+    categoryId: category.ForJune,
+  },
+
+  'KUB KAO KUB PLA': {
+    payeeName: 'Kub Kao Kub Pla',
+    categoryId: category.EatOut,
+  },
+
+  'PAYPAL *HUMBLEBUNDL': {
+    payeeName: 'Humble Bundle',
+    categoryId: category.Games,
   },
 }
 
