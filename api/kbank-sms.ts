@@ -33,8 +33,6 @@ async function handler(req: VercelRequest, res: VercelResponse) {
     const sms = parseSMS(text)
     if (!sms?.amount) return err('sms is not from KBank')
 
-    const budget = await Ynab.budgets.getBudgetById(YNAB_BUDGET_ID)
-
     const memo = `via x-${sms.cardNo}: ${sms.payee} (${sms.balance} remaining)`
 
     Ynab.transactions.createTransaction(YNAB_BUDGET_ID, {
@@ -52,7 +50,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
       },
     })
 
-    res.send({ok: true, result: sms, budget})
+    res.send({ok: true, result: sms})
   } catch (err) {
     res.status(500).send({error: err.message})
   }
