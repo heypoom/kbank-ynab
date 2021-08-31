@@ -54,7 +54,7 @@ async function handler(req: VercelRequest, res: VercelResponse) {
         date: sms.createdAt.toISOString(),
 
         // Unit is in milliunits
-        amount: sms.amount * 1000,
+        amount: -sms.amount * 1000,
 
         payee_name: payeeInfo.payeeName,
         payee_id: payeeInfo.payeeId,
